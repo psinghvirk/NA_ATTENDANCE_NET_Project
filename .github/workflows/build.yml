@@ -1,0 +1,30 @@
+name: .NET Build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.3.1
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Build the project
+      run: |
+        msbuild NA_Attendance_NET_Project.sln /p:Configuration=Release
+
+    - name: Upload EXE
+      uses: actions/upload-artifact@v2
+      with:
+        name: NA_Attendance_App
+        path: '**/bin/Release/*.exe'
