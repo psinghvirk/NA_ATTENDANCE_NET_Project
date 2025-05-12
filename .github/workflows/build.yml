@@ -20,7 +20,7 @@ jobs:
     - name: Build .csproj directly
       run: dotnet build ./Forms/MainForm.csproj --configuration Release
 
-      - name: Upload EXE Artifact
+    - name: Upload EXE Artifact
       uses: actions/upload-artifact@v3
       with:
         name: NA_Attendance_App
