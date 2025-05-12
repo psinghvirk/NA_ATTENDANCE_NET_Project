@@ -12,13 +12,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.3.1
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
 
-    - name: Build
-      run: msbuild NA_Attendance_NET_Project.sln /p:Configuration=Release
+    - name: Build .csproj directly
+      run: dotnet build ./Forms/MainForm.csproj --configuration Release
